@@ -79,6 +79,7 @@ public class MotorristaDao {
     }
 
     public Motorrista pesquisarMotorrista(int id) {
+        open();
         List<Motorrista> carros = manager
                 .createQuery("select v from Motorrista v", Motorrista.class)
                 .getResultList();

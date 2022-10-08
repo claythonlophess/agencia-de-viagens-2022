@@ -58,7 +58,13 @@ public class CarroDao {
         manager.close();
         JpaUtil.close();
     }
-
+    public List<Carro> listaDeCarros() {
+        List<Carro> lista = manager
+                .createQuery("select v from Carro v", Carro.class)
+                .getResultList();
+       return lista;
+      
+    }
     public void atualizarTabelaViagens(Viagens View) {
 //        List<Carro> viagems = manager
 //                .createQuery("select v from Carro v", Carro.class)

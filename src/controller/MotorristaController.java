@@ -5,13 +5,9 @@
  */
 package controller;
 
-import Dao.CarroDao;
-import Dao.JpaUtil;
 import Dao.MotorristaDao;
 import bean.Carro;
 import bean.Motorrista;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.UsuariosExternos.PrefilMotorista;
@@ -75,10 +71,7 @@ public class MotorristaController {
                 String tonelagem = linha1.getSpTonelagem().getValue().toString();
                 int ano = linha1.getYear().getValue();
                 String motor = linha1.getTxtMotorAviao().getText();
-                EntityManager manager = JpaUtil.getEntityManager();
-                EntityTransaction tx = manager.getTransaction();
-                tx.begin();
-
+                
                 Carro c = new Carro();
                 c.setMatricula(matricula);
                 c.setMarca(marca.toString());
@@ -87,18 +80,18 @@ public class MotorristaController {
                 c.setAcentos(acentos);
                 c.setTonelagem(tonelagem);
                 c.setAnoFabrico(ano);
-                Motorrista mt = new MotorristaDao().pesquisarMotorrista(motorrista.getId());
+                Motorrista mt = new MotorristaDao().pesquisarMotorrista(29);
+                if (mt==null) {
+                    JOptionPane.showMessageDialog(view, "motorista nao rncontrado");
+                }
                 c.setMotorista(mt);
                 c.setNrDeMotor(motor);
                 c.setEstado(estado);
-
-                manager.persist(c);
-                tx.commit();
-                manager.close();
-                JpaUtil.close();
                 JOptionPane.showMessageDialog(view, "Carro addicionado com sucesso");
                 // System.out.println(c.toString());
             }
         });
+        
     }
+     
 }
