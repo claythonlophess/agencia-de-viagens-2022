@@ -124,6 +124,9 @@ public abstract class Veiculo implements Serializable {
     public String toString() {
         return "Marca:\t" + marca + "\nModelo:\t" + modelo +"\nData de Aquisicao:\t" + dataDeAquisicao + "\nAno de Fabrico:\t"+ anoFabrico+"\nNumero de Lugares:\t" + acentos + "\nTonelagem:\t" + tonelagem+"\nEstado:\t"+estado;
     }
+     public String toString1() {
+        return "Marca:" + marca + " Modelo:" + modelo +" Acentos:" + acentos + " Tonelagem:" + tonelagem;
+    }
     
     
     

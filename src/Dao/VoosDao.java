@@ -19,8 +19,6 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import view.adm.Funcionario;
-import view.clientes.DesktopClienteJpane;
 
 /**
  *
@@ -84,6 +82,8 @@ public class VoosDao {
         }
         return null;
     }
+    
+   
 
     public ArrayList<Voos> pesquisarVoos(String txt) {
         List<AeroportoMoz> lista1 = new ArrayList<>();
@@ -94,7 +94,7 @@ public class VoosDao {
 
             c = new ConexaoAeroporto().getconec();
 
-            String sql = "select * from mocambique";
+            String sql = "select * from aeroportomoz";
             PreparedStatement stmt = c.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -119,10 +119,40 @@ public class VoosDao {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DesktopClienteJpane.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VoosDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return v;
+    }
+
+      public List<AeroportoMoz> listaAeroporto() {
+        List<AeroportoMoz> lista1 = new ArrayList<>();
+
+        try {
+            Connection c;
+
+            c = new ConexaoAeroporto().getconec();
+
+            String sql = "select * from aeroportomoz";
+            PreparedStatement stmt = c.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                AeroportoMoz p = new AeroportoMoz();
+                p.setId(rs.getInt("id"));
+                p.setAeroporto(rs.getString("aeroporto"));
+                p.setProvincia(rs.getString("provincia"));
+                p.setRegiao(rs.getString("regiao"));
+                p.setCapital(rs.getString("capital"));
+                String toString = p.toString().toLowerCase();
+                    lista1.add(p);
+            }
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(VoosDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista1;
     }
 
   

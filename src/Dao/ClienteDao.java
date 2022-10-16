@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import view.clientes.DesktopClienteJpane;
 
 /**
  *
@@ -92,7 +91,7 @@ public class ClienteDao {
 //                }
 //            }
         } catch (SQLException ex) {
-            Logger.getLogger(DesktopClienteJpane.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return v;

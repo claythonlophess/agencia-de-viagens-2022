@@ -150,7 +150,7 @@ public class VoosController {
 
             c = new ConexaoAeroporto().getconec();
 
-            String sql = "select * from mocambique";
+            String sql = "select * from aeroportomoz";
             PreparedStatement stmt = c.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -187,20 +187,25 @@ public class VoosController {
         //   sugestaoJpanel.setjTextField1(jTextField);
         sugestaoJpanel.setVisible(true);
     }
-
+    
+    /**
+     * Area principal dos detalhes do voo (contem botoes Proximo e Anterios)
+     */
     public void btnAgendarVoo() {
+        //Area principal dos detalhes do voo (contem botoes Proximo e Anterios)
         detalhesJFrame = new DetalhesDoVooFrame();
-
+        
+        //gerencia todos os paines ate chegar ao pagamento
         detalhesDoVooJpanel = new DetalhesDoVooJpanel();
         passageirosJpanel = new PassageirosJpanel();
         tarifasJpanel = new TarifasJpanel();
 
-        tarifasJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
-        detalhesDoVooJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
-        passageirosJpanel.setBounds(detalhesJFrame.getjPanel1().getWidth() / 4, detalhesJFrame.getjPanel1().getHeight() / 3, 615, 188);
-
-        tarifasJpanel.setVisible(false);
-        passageirosJpanel.setVisible(false);
+//        tarifasJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
+//        detalhesDoVooJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
+//        passageirosJpanel.setBounds(detalhesJFrame.getjPanel1().getWidth() / 4, detalhesJFrame.getjPanel1().getHeight() / 3, 615, 188);
+////
+//        tarifasJpanel.setVisible(false);
+//        passageirosJpanel.setVisible(false);
         ProximoAnterior();
         if (v.getVoosSugestao1()
                 .getjCheckBox1().isSelected()) {
@@ -218,11 +223,11 @@ public class VoosController {
                     detalhesJFrame.dispose();
                 }
             });
-
-            detalhesJFrame.getjPanel1().add(detalhesDoVooJpanel);
-            detalhesJFrame.getjPanel1().add(tarifasJpanel);
-            detalhesJFrame.getjPanel1().add(passageirosJpanel);
+            
             detalhesJFrame.setVisible(true);
+            detalhesJFrame.getjPanel1().showForm(detalhesDoVooJpanel);
+//            detalhesJFrame.getjPanel1().add(tarifasJpanel);
+//            detalhesJFrame.getjPanel1().add(passageirosJpanel);
         }else{
             JOptionPane.showMessageDialog(view, "Selecione pelo menos um voo");
         }
@@ -234,19 +239,21 @@ public class VoosController {
                 switch (AnteriorProximo) {
                     case 0:
                         AnteriorProximo++;
-                        passageirosJpanel.setVisible(true);
-                        detalhesDoVooJpanel.setVisible(false);
+//                        passageirosJpanel.setVisible(true);
+//                        detalhesDoVooJpanel.setVisible(false);
+                        detalhesJFrame.getjPanel1().showForm(tarifasJpanel);
                         break;
                     case 1:
                         AnteriorProximo++;
-                        tarifasJpanel.setVisible(true);
-                        passageirosJpanel.setVisible(false);
+//                        tarifasJpanel.setVisible(true);
+//                        passageirosJpanel.setVisible(false);
+                        detalhesJFrame.getjPanel1().showForm(passageirosJpanel);
                         break;
                     default:
                         break;
                 }
-                detalhesJFrame.getjPanel1().repaint();
-                detalhesJFrame.getjPanel1().updateUI();
+//                detalhesJFrame.getjPanel1().repaint();
+//                detalhesJFrame.getjPanel1().updateUI();
             }
         });
         detalhesJFrame.getLblAnterior().addMouseListener(new java.awt.event.MouseAdapter() {
@@ -254,28 +261,26 @@ public class VoosController {
                 switch (AnteriorProximo) {
                     case 1:
                         AnteriorProximo--;
-                        passageirosJpanel.setVisible(false);
-                        detalhesDoVooJpanel.setVisible(true);
+                        detalhesJFrame.getjPanel1().showForm(detalhesDoVooJpanel);
                         break;
                     case 2:
                         AnteriorProximo--;
-                        tarifasJpanel.setVisible(false);
-                        passageirosJpanel.setVisible(true);
+                        detalhesJFrame.getjPanel1().showForm(tarifasJpanel);
                         break;
                     default:
                         break;
                 }
-                detalhesJFrame.getjPanel1().repaint();
-                detalhesJFrame.getjPanel1().updateUI();
+//                detalhesJFrame.getjPanel1().repaint();
+//                detalhesJFrame.getjPanel1().updateUI();
             }
         });
         detalhesJFrame.getjPanel1().addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
-                tarifasJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
-                detalhesDoVooJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
-                passageirosJpanel.setBounds(detalhesJFrame.getjPanel1().getWidth() / 4, detalhesJFrame.getjPanel1().getHeight() / 3, 615, 188);
-                detalhesJFrame.getjPanel1().repaint();
-                detalhesJFrame.getjPanel1().updateUI();
+//                tarifasJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
+//                detalhesDoVooJpanel.setBounds(0, 0, detalhesJFrame.getjPanel1().getWidth(), detalhesJFrame.getjPanel1().getHeight());
+//                passageirosJpanel.setBounds(detalhesJFrame.getjPanel1().getWidth() / 4, detalhesJFrame.getjPanel1().getHeight() / 3, 615, 188);
+//                detalhesJFrame.getjPanel1().repaint();
+//                detalhesJFrame.getjPanel1().updateUI();
             }
         });
 

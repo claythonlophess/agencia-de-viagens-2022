@@ -45,6 +45,11 @@ public class Home extends javax.swing.JFrame {
         jPanel21 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jpDesjtop = new javax.swing.JPanel();
+        jPanel20 = new javax.swing.JPanel();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jTextField11 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -118,15 +123,71 @@ public class Home extends javax.swing.JFrame {
         jpDesjtop.setBackground(new java.awt.Color(204, 255, 102));
         jpDesjtop.setMinimumSize(new java.awt.Dimension(40, 40));
 
+        jTextField9.setText("Preco");
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
+
+        jTextField10.setText("Localizacao");
+        jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField10KeyTyped(evt);
+            }
+        });
+
+        jTextField11.setText("Acentos");
+
+        jButton3.setText("Procurar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jpDesjtopLayout = new javax.swing.GroupLayout(jpDesjtop);
         jpDesjtop.setLayout(jpDesjtopLayout);
         jpDesjtopLayout.setHorizontalGroup(
             jpDesjtopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpDesjtopLayout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpDesjtopLayout.setVerticalGroup(
             jpDesjtopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+            .addGroup(jpDesjtopLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(315, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 145));
@@ -310,12 +371,10 @@ public class Home extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -699,6 +758,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
         c.carrosMouseClicked();
+        jPanel5.setVisible(false);
     }//GEN-LAST:event_jPanel8MouseClicked
 
     private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
@@ -726,28 +786,19 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel31MouseClicked
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        ImageIcon iconFundo = new javax.swing.ImageIcon(getClass().getResource("/view/Images/fundo 1.jpg"));
-        jLabel5.setBounds(0, 0, jPanel6.getWidth(), jPanel6.getHeight());
-        iconFundo.setImage(iconFundo.getImage().getScaledInstance(jPanel6.getWidth(), jPanel6.getHeight(), 1));
-        jLabel5.setIcon(iconFundo); // NOI18N        // TODO add your handling code here:
+       redimenssionar();
     }//GEN-LAST:event_formComponentResized
 
     private void jPanel6ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel6ComponentResized
-        jLabel5.setBounds(0, 0, jPanel6.getWidth(), jPanel6.getHeight());
-        iconFundo.setImage(iconFundo.getImage().getScaledInstance(jPanel6.getWidth(), jPanel6.getHeight(), 1));
-        jLabel5.setIcon(iconFundo); // NOI18N
+       redimenssionar();  
     }//GEN-LAST:event_jPanel6ComponentResized
 
     private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
-        jLabel5.setBounds(0, 0, jPanel6.getWidth(), jPanel6.getHeight());
-        iconFundo.setImage(iconFundo.getImage().getScaledInstance(jPanel6.getWidth(), jPanel6.getHeight(), 1));
-        jLabel5.setIcon(iconFundo); // NOI18N      // TODO add your handling code here:
+       redimenssionar();  // NOI18N      // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MouseEntered
 
     private void jPanel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseReleased
-        jLabel5.setBounds(0, 0, jPanel6.getWidth(), jPanel6.getHeight());
-        iconFundo.setImage(iconFundo.getImage().getScaledInstance(jPanel6.getWidth(), jPanel6.getHeight(), 1));
-        jLabel5.setIcon(iconFundo); // NOI18N              // TODO add your handling code here:
+        redimenssionar();            // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MouseReleased
 
     private void jPanel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel14MouseClicked
@@ -762,6 +813,18 @@ jPanel10.setVisible(false);        // TODO add your handling code here:
     private void jPanel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel18MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel18MouseClicked
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jTextField10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10KeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public JPanel getjPanel3() {
         return jPanel3;
@@ -806,6 +869,8 @@ jPanel10.setVisible(false);        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -835,7 +900,9 @@ jPanel10.setVisible(false);        // TODO add your handling code here:
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -845,9 +912,16 @@ jPanel10.setVisible(false);        // TODO add your handling code here:
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel jpDesjtop;
     // End of variables declaration//GEN-END:variables
 
@@ -861,6 +935,13 @@ jPanel10.setVisible(false);        // TODO add your handling code here:
 
     public JPanel getjPanel10() {
         return jPanel10;
+    }
+
+    private void redimenssionar() {
+         ImageIcon iconFundo = new javax.swing.ImageIcon(getClass().getResource("/view/Images/fundo 1.jpg"));
+        jLabel5.setBounds(0, 0, jPanel6.getWidth(), jPanel6.getHeight());
+        iconFundo.setImage(iconFundo.getImage().getScaledInstance(jPanel6.getWidth(), jPanel6.getHeight(), 1));
+        jLabel5.setIcon(iconFundo); // NOI18N        // TODO add your handling code here:throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

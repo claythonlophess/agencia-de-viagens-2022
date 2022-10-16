@@ -32,6 +32,14 @@ public class Pessoa implements Serializable {
     private String morada, numeroDeCartao;
     private String usuario, senha;
 
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public Pessoa(int nivelDeAcesso, String usuario, String senha) {
         this.nivelDeAcesso = nivelDeAcesso;
         this.usuario = usuario;

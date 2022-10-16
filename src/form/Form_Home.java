@@ -1,9 +1,15 @@
 package form;
 
+import Dao.JpaUtil;
+import Dao.VoosDao;
+import bean.AeroportoMoz;
 import component.Card;
 import component.EditorCard;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import model.Model_Card;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -31,13 +37,14 @@ public class Form_Home extends javax.swing.JPanel {
         panel.setLayout(new WrapLayout(WrapLayout.LEADING));
         jScrollPane1.setVerticalScrollBar(new ScrollBar());
         components = new ArrayList();
-        for (int i = 0; i < 10; i++) {
+        
+        
+        List<AeroportoMoz> lista = new VoosDao().listaAeroporto();
+         for (AeroportoMoz a : lista) {
             Card card = null;
-            if (i % 2 == 0) {
-                card = new Card(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/testing/1.jpg")), "Motortista " + i, "Leaning java\nswing ui design\nlike and Subscribe\nthank for watch"));
-            } else {
-                card = new Card(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/testing/2.jpg")), "Motortista " + i, "Leaning java\nswing ui design\nlike and Subscribe\nthank for watch"));
-            }
+                card = new Card(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/testing/1.jpg")), a.getAeroporto() ,
+                        "Aeropoto Nacional \n"+a.getCapital()+"\nregiao: "+a.getRegiao()+"\nProvincia"+a.getProvincia()+"\n"));
+          
             panel.add(card);
             components.add(card);
             card.getAcao1().getLblEditar().addMouseListener(new java.awt.event.MouseAdapter() {
@@ -51,17 +58,27 @@ public class Form_Home extends javax.swing.JPanel {
                 }
             });
         }
+        
 
         panel.revalidate();
         panel.repaint();
     }
 
     public void addCard() {
+        
         panel.add(new Card(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/testing/2.jpg")), "Lean Java UI", "Leaning java\nswing ui design\nlike and Subscribe\nthank for watch")));
         panel.revalidate();
         panel.repaint();
     }
-  
+    public void addCard(AeroportoMoz a) {
+        Card card = new Card(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/testing/1.jpg")), a.getAeroporto() ,
+                "Aeropoto Nacional \n"+a.getCapital()+"\nregiao: "+a.getRegiao()+"\nProvincia"+a.getProvincia()+"\n"));
+          
+        
+        panel.add(card);
+        panel.revalidate();
+        panel.repaint();
+    }
 
     public void remove() {
         panel.removeAll();
@@ -143,6 +160,7 @@ public class Form_Home extends javax.swing.JPanel {
                             validar = false;
                         }
                     } else {
+                        Component obterCard = obterCard();
                         validar = true;
                     }
 
@@ -201,9 +219,25 @@ public class Form_Home extends javax.swing.JPanel {
                                 }
                             });
                             user.repaint();
+                        } else if (!v.getText().equals("") ){
+                         
+                            EntityManager manager = JpaUtil.getEntityManager();
+                            EntityTransaction tx = manager.getTransaction();
+                            tx.begin();
+
+                            AeroportoMoz h = new AeroportoMoz();
+                            h.setAeroporto(user.getTxtAeroporto().getText());
+                            h.setCapital(user.getTxtCapital().getText());
+                            h.setProvincia(user.getTxtProvincia().getText());
+                            h.setRegiao(user.getTxtRegiao().getText());
+                            manager.persist(h);
+                            tx.commit();
+                             addCard(h);
+                              user.repaint();
+                             return;
                         }
                     }
-                }
+                } 
                 addCard();
             }
         });
@@ -215,12 +249,7 @@ public class Form_Home extends javax.swing.JPanel {
         });
 
         panel.removeAll();
-        panel.add(user);
-        components.forEach((component) -> {
-            panel.add(component);
-        });
-        panel.repaint();
-        panel.updateUI();
+       init();
     }
 
     public void addLimparCampos(EditorCard user) {
@@ -244,6 +273,7 @@ public class Form_Home extends javax.swing.JPanel {
     public void removerCard() {
         components.remove(obterCard());
         panel.remove(obterCard());
+        
         panel.repaint();
         panel.updateUI();
     }

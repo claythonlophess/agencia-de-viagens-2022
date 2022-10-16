@@ -32,12 +32,12 @@ public class NewVeiculo extends javax.swing.JPanel {
         initComponents();
         btnGravar.setVisible(false);
         Component[] c1 = jPanel2Registo.getComponents();
-        for (Component c : c1) {
-            if (!(c instanceof JLabel)) {
-                c.setEnabled(false);
-            }
-
-        }
+//        for (Component c : c1) {
+//            if (!(c instanceof JLabel)) {
+//                c.setEnabled(false);
+//            }
+//
+//        }
     }
 
     public boolean isStatus() {

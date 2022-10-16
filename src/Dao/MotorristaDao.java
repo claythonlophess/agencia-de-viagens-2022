@@ -20,13 +20,13 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import view.clientes.DesktopClienteJpane;
 
 /**
  *
  * @author Administrator
  */
 public class MotorristaDao {
+
     EntityManager manager = JpaUtil.getEntityManager();
 
     EntityTransaction tx = manager.getTransaction();
@@ -49,6 +49,7 @@ public class MotorristaDao {
         manager.persist(voos);
         tx.commit();
     }
+
     public void persist(Carro voos) {
         open();
         manager.persist(voos);
@@ -124,13 +125,56 @@ public class MotorristaDao {
 //                }
 //            }
         } catch (SQLException ex) {
-            Logger.getLogger(DesktopClienteJpane.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MotorristaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return v;
     }
 
-  
+    public List<Motorrista> listaMoto() {
+        List<Motorrista> lista1 = new ArrayList<>();
+
+        try {
+            Connection c;
+
+            c = new ConexaoAeroporto().getconec();
+
+            String sql = "select * from motorista";
+            PreparedStatement stmt = c.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Motorrista p = new Motorrista();
+                p.setId(rs.getInt("id"));
+//                p.setApelido(rs.getString("apelido"));
+//                p.setIdade(rs.getString("idade"));
+//                p.setDisponivel(rs.getBoolean("disponivel"));
+//                p.setNome(rs.getString("nome"));
+//                p.setMorada(rs.getString("morrada"));
+//                p.setNivelDeAcesso(rs.getInt("niveldeacesso"));
+//                p.setNumeroDeCartao(rs.getString("numerrodecartao"));
+//                p.setSenha(rs.getString("senha"));
+//                p.setUsuario(rs.getString("usuario"));
+                lista1.add(p);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MotorristaDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista1;
+    }
+
+    public Motorrista pesquisarMotorisrtaSQL(int id) {
+        List<Motorrista> lista = listaMoto();
+        for (Motorrista m : lista) {
+            if (m.getId() == id) {
+                return m;
+            }
+        }
+        return null;
+    }
+
     public Motorrista editae(Motorrista voos) {
         Motorrista viagem = manager.find(Motorrista.class, voos.getId());
         tx.commit();

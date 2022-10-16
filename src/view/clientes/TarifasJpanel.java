@@ -5,17 +5,24 @@
  */
 package view.clientes;
 
+import java.awt.Component;
+import view.animacaopainel.Transition;
+
 /**
  *
  * @author Administrator
  */
-public class TarifasJpanel extends javax.swing.JPanel {
+public class TarifasJpanel  extends Transition{
 
     /**
      * Creates new form Tarifas
      */
     public TarifasJpanel() {
         initComponents();
+    }
+    @Override
+    public Component[] initTransition() {
+        return new Component[]{jPanel1};
     }
 
     /**

@@ -6,19 +6,25 @@
 package view.clientes;
 
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JButton;
+import view.animacaopainel.Transition;
 
 /**
  *
  * @author Administrator
  */
-public class DetalhesDoVooJpanel extends javax.swing.JPanel {
+public class DetalhesDoVooJpanel  extends Transition {
 
     /**
      * Creates new form NewJPanel
      */
     public DetalhesDoVooJpanel() {
         initComponents();
+    }
+ @Override
+    public Component[] initTransition() {
+        return new Component[]{jPanel2,jPanel3};
     }
 
     public JButton getBtnAlterar() {

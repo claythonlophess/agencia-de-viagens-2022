@@ -5,6 +5,7 @@
  */
 package test;
 
+import view.animacaopainel.teste.Test;
 import java.awt.Color;
 import javaswingdev.Notification;
 

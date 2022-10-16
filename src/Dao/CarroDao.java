@@ -4,8 +4,10 @@
  *  GitHub:   https://github.com/claythonlophess} 
  */
 package Dao;
+
 import bean.AeroportoMoz;
 import bean.Carro;
+import bean.Motorrista;
 import bean.Viagens;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,16 +20,22 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import view.clientes.DesktopClienteJpane;
+import javax.swing.JOptionPane;
+//import view.clientes.DesktopClienteJpane;
 
 /**
  *
  * @author Administrator
  */
 public class CarroDao {
-   EntityManager manager = JpaUtil.getEntityManager();
+
+    EntityManager manager = JpaUtil.getEntityManager();
 
     EntityTransaction tx = manager.getTransaction();
+
+    public CarroDao() {
+        open();
+    }
 
     public void open() {
         Persistence.createEntityManagerFactory("Vendas_PU");
@@ -37,34 +45,31 @@ public class CarroDao {
     }
 
     public void close() {
-
         manager.close();
         JpaUtil.close();
     }
 
     public void persist(Carro voos) {
-        open();
         manager.persist(voos);
         tx.commit();
     }
+
     public void persist1(Carro c) {
         EntityManager manager = JpaUtil.getEntityManager();
         EntityTransaction tx = manager.getTransaction();
-        tx.begin();
 
-        
         manager.persist(c);
         tx.commit();
-        manager.close();
-        JpaUtil.close();
     }
+
     public List<Carro> listaDeCarros() {
         List<Carro> lista = manager
                 .createQuery("select v from Carro v", Carro.class)
                 .getResultList();
-       return lista;
-      
+        return lista;
+
     }
+
     public void atualizarTabelaViagens(Viagens View) {
 //        List<Carro> viagems = manager
 //                .createQuery("select v from Carro v", Carro.class)
@@ -133,16 +138,41 @@ public class CarroDao {
 //                }
 //            }
         } catch (SQLException ex) {
-            Logger.getLogger(DesktopClienteJpane.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CarroDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return v;
     }
 
-  
     public Carro editae(Carro voos) {
         Carro viagem = manager.find(Carro.class, voos.getId());
         tx.commit();
         return viagem;
+    }
+
+    public void addCarro(int idMotorista, String matricula, String marca, String modelo,
+            String dataDeAquisicao, String acentos, String tonelagem, String ano,
+             String motor, String estado) {
+
+        Carro c = new Carro();
+        c.setMatricula(matricula);
+        c.setMarca(marca);
+        c.setModelo(modelo);
+        c.setDataDeAquisicao(dataDeAquisicao);
+        c.setAcentos(acentos);
+        c.setTonelagem(tonelagem);
+        c.setAnoFabrico(Integer.parseInt(ano));
+        Motorrista mt = new MotorristaDao().pesquisarMotorisrtaSQL(idMotorista);
+        if (mt == null) {
+            JOptionPane.showMessageDialog(null, "motorista nao rncontrado");
+        } else {
+            c.setMotorista(mt);
+            c.setNrDeMotor(motor);
+            c.setEstado(estado);
+            new CarroDao().persist1(c);
+            JOptionPane.showMessageDialog(null, "Carro addicionado com sucesso");
+            // System.out.println(c.toString());
+        }
+
     }
 }

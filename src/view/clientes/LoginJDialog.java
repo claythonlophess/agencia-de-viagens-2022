@@ -6,6 +6,7 @@
 package view.clientes;
 
 import Dao.JpaUtil;
+import bean.Motorrista;
 import bean.Pessoa;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -174,17 +175,15 @@ public class LoginJDialog extends javax.swing.JDialog {
                     clienteJFrame.getTxtUsuario().setText("Usuario: " + p.getUsuario());
                     clienteJFrame.setVisible(true);
                     manager.close();
-        JpaUtil.close();
         parent1.dispose();
         doClose(RET_OK);
                 }
                 if (p.getNivelDeAcesso() == 1) {
-                    PrefilMotorista m = new PrefilMotorista();
+                    PrefilMotorista m = new PrefilMotorista((Motorrista) p);
                     m.getLblNome().setText("Nome: " + p.getNome());
                     m.getLblUsuario().setText("Usuario: " + p.getUsuario());
                     m.setVisible(true);
                     manager.close();
-        JpaUtil.close();
         parent1.dispose();
         doClose(RET_OK);
                 }

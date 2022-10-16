@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class ConexaoAeroporto{
     public Connection getconec(){
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost/aeroportos_data_base","root","");
+            return DriverManager.getConnection("jdbc:mysql://localhost/ts1","root","");
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Erro com ao Conectar com o banco de dados");
             Logger.getLogger(ConexaoAeroporto.class.getName()).log(Level.SEVERE, null, ex);

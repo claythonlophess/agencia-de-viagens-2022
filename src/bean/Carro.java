@@ -63,5 +63,6 @@ public class Carro extends Veiculo implements Serializable {
     public String toString() {
         return super.toString() + "Carros{" + "motorista=" + motorista + ", matricula=" + matricula + '}';
     }
+   
 
 }

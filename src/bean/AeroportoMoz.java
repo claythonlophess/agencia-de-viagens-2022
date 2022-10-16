@@ -5,11 +5,20 @@
  */
 package bean;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author Administrator
  */
-public class AeroportoMoz {
+@Entity
+public class AeroportoMoz implements Serializable {
+    
+    @Id
+    @GeneratedValue
     private int id;
     private String aeroporto;
     private String provincia;

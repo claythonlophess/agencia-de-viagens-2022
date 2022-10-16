@@ -9,6 +9,7 @@ import Dao.CarroDao;
 import bean.Carro;
 import java.util.ArrayList;
 import java.util.List;
+import javaswingdev.Notification;
 import javax.swing.JLabel;
 
 /**
@@ -18,9 +19,43 @@ import javax.swing.JLabel;
 public class AdmnistracaoJPanel extends javax.swing.JFrame {
 
     private final NotificacaoJpanel n;
+    private final CarroDao carroDao;
+    private final List<Carro> listaDeCarros;
+    private final CadastroDEViagens cadastroDEViagens;
+    private final ValidarCarros validarCarros;
 
+    public AdmnistracaoJPanel() {
+        initComponents();
+        carroDao = new CarroDao();
+        n = new NotificacaoJpanel();
+         cadastroDEViagens = new CadastroDEViagens();
+         validarCarros = new  ValidarCarros();
+        jPanel7.add(n);
+        listaDeCarros = carroDao.listaDeCarros();
+        int x = 0;
+        n.setNewVeiculo(validarCarros.getNewVeiculo());
+        n.setMsg(this);
+        lblNrDeSolicitacoes.setText(x + "+");
+        for (Carro l : listaDeCarros) {
+            if (!l.getEstado().equals("ativo")) {
+                x++;
+                Notification panel = new Notification(this, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, l.getMotorista().getNome() + " enviou Pedido de validacao: ");
+                panel.showNotification();
+            }
+        }
+        lblNrDeSolicitacoes.setText(x + "+");
+    }
+
+//    @Override
+//    public void paint(Graphics grphcs) {
+//        Graphics2D g2 = (Graphics2D) grphcs.create();
+//        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        g2.setColor(getBackground());
+//        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+//        g2.dispose();
+//        super.paint(grphcs);
+//    }
     public void voosMouseClicked() {
-        List<Carro> listaDeCarros = new CarroDao().listaDeCarros();
         List<Carro> listaDeMenssagen = new ArrayList<>();
         for (Carro l : listaDeCarros) {
             if (!l.getEstado().equals("ativo")) {
@@ -41,45 +76,23 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
         n.setVisible(true);
     }
 
-    public AdmnistracaoJPanel() {
-        initComponents();
-        n = new NotificacaoJpanel();
-        jPanel7.add(n);
-        List<Carro> listaDeCarros = new CarroDao().listaDeCarros();
-        int x = 0;
-        n.setNewVeiculo(newVeiculo1);
-        n.setMsg(this);
-        lblNrDeSolicitacoes.setText(x + "+");
-        for (Carro l : listaDeCarros) {
-            if (!l.getEstado().equals("ativo")) {
-                if (!l.getEstado().equals("ativo")) {
-
-                    x++;
-                }
-            }
-        }
-        lblNrDeSolicitacoes.setText(x + "+");
-    }
-
     public JLabel getLblNome() {
         return lblNome;
     }
 
     public void add() {
-        List<Carro> listaDeCarros = new CarroDao().listaDeCarros();
-        List<Carro> listaDeMenssagen = new ArrayList<>();
         for (Carro l : listaDeCarros) {
             if (l.toString().equals(n.getMsg())) {
-                newVeiculo1.getTxtMatricula().setText(l.getMatricula());
-                newVeiculo1.getTxtMotorAviao().setText(l.getNrDeMotor());
-                //newVeiculo1.getTxtSerie().setText(l.get());
-                //newVeiculo1.getComboMarca().setSelectedItem("Item 1");
-               // newVeiculo1.getComboModelo().setSelectedItem();
-                newVeiculo1.getDate().setDateFormatString(l.getDataDeAquisicao());
-                newVeiculo1.getSpAcentos().setValue(l.getAcentos());
-                newVeiculo1.getSpTonelagem().setValue(l.getTonelagem());
-                newVeiculo1.getYear().setValue(l.getAnoFabrico());
-                newVeiculo1.getTxtMotorAviao().setText(l.getMotorista().getNome());
+                validarCarros.getNewVeiculo().getTxtMatricula().setText(l.getMatricula());
+                validarCarros.getNewVeiculo().getTxtMotorAviao().setText(l.getNrDeMotor());
+                //validarCarros.getNewVeiculo().getTxtSerie().setText(l.get());
+                //validarCarros.getNewVeiculo().getComboMarca().setSelectedItem("Item 1");
+                // validarCarros.getNewVeiculo().getComboModelo().setSelectedItem();
+                validarCarros.getNewVeiculo().getDate().setDateFormatString(l.getDataDeAquisicao());
+                validarCarros.getNewVeiculo().getSpAcentos().setValue(l.getAcentos());
+                validarCarros.getNewVeiculo().getSpTonelagem().setValue(l.getTonelagem());
+                validarCarros.getNewVeiculo().getYear().setValue(l.getAnoFabrico());
+                validarCarros.getNewVeiculo().getTxtMotorAviao().setText(l.getMotorista().getNome());
             }
         }
 
@@ -90,27 +103,22 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel5 = new javax.swing.JPanel();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jPanel7 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblNrDeSolicitacoes = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
-        materialTabbed1 = new tabbed.MaterialTabbed();
-        jPanel1 = new javax.swing.JPanel();
-        newVeiculo1 = new view.clientes.NewVeiculo();
+        formTransition2 = new view.animacaopainel.FormTransition();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        btnAgendarViagens = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        btnValidarCarros = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -123,9 +131,11 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jMenuItem3.setText("jMenuItem3");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel7.setBackground(new java.awt.Color(102, 102, 0));
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel7MouseEntered(evt);
@@ -147,101 +157,69 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
 
         lblNome.setText("Nome");
 
-        materialTabbed1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                materialTabbed1MouseEntered(evt);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnAgendarViagens.setText("Agendar Viagens");
+        btnAgendarViagens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendarViagensActionPerformed(evt);
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("jButton2");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(newVeiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(newVeiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(338, Short.MAX_VALUE))
-        );
+        jButton3.setText("jButton3");
 
-        materialTabbed1.addTab("", jPanel1);
+        jButton4.setText("Motorista");
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        btnValidarCarros.setText("Carros");
+        btnValidarCarros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarCarrosActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Validar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(btnAgendarViagens)
+                    .addComponent(jLabel2)
+                    .addComponent(btnValidarCarros)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(btnAgendarViagens)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addGap(13, 13, 13)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addGap(18, 18, 18)
+                .addComponent(btnValidarCarros)
+                .addContainerGap(180, Short.MAX_VALUE))
         );
-
-        materialTabbed1.addTab("", jPanel2);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-
-        materialTabbed1.addTab("", jPanel3);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-
-        materialTabbed1.addTab("", jPanel4);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-
-        materialTabbed1.addTab("", jPanel8);
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-
-        materialTabbed1.addTab("", jPanel9);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -249,19 +227,24 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 995, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNrDeSolicitacoes)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 995, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNrDeSolicitacoes)))
                 .addContainerGap())
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(materialTabbed1, javax.swing.GroupLayout.PREFERRED_SIZE, 1159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(26, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addGap(192, 192, 192)
+                    .addComponent(formTransition2, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,40 +255,15 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
                     .addComponent(lblNrDeSolicitacoes)
                     .addComponent(jLabel3)
                     .addComponent(lblNome))
-                .addContainerGap(516, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(materialTabbed1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(formTransition2, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                     .addContainerGap()))
         );
-
-        materialTabbed1.getAccessibleContext().setAccessibleName("");
-
-        jMenu1.setText("File");
-
-        jMenu3.setText("Validar");
-
-        jMenuItem1.setText("Motoristas");
-        jMenu3.add(jMenuItem1);
-
-        jMenuItem2.setText("Carros");
-        jMenu3.add(jMenuItem2);
-
-        jMenu1.add(jMenu3);
-
-        jMenu4.setText("jMenu4");
-        jMenu1.add(jMenu4);
-
-        jMenu5.setText("jMenu5");
-        jMenu1.add(jMenu5);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -333,9 +291,13 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel7MouseEntered
 
-    private void materialTabbed1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialTabbed1MouseEntered
-        n.setVisible(false);         // TODO add your handling code here:
-    }//GEN-LAST:event_materialTabbed1MouseEntered
+    private void btnAgendarViagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarViagensActionPerformed
+ formTransition2.showForm(cadastroDEViagens);         // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgendarViagensActionPerformed
+
+    private void btnValidarCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCarrosActionPerformed
+       formTransition2.showForm(validarCarros);  // TODO add your handling code here:
+    }//GEN-LAST:event_btnValidarCarrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,28 +336,25 @@ public class AdmnistracaoJPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgendarViagens;
+    private javax.swing.JButton btnValidarCarros;
+    private view.animacaopainel.FormTransition formTransition2;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNrDeSolicitacoes;
-    private tabbed.MaterialTabbed materialTabbed1;
-    private view.clientes.NewVeiculo newVeiculo1;
     // End of variables declaration//GEN-END:variables
+
+   
 
 }

@@ -110,7 +110,7 @@
                               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                               <Component id="jPanel4" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jPanel6" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanel6" pref="446" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
                               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
